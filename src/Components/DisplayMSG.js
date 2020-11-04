@@ -8,7 +8,7 @@ export default function DisplayMSG() {
     displaydata = JSON.parse(localStorage.getItem("ArrayOfMsg")).map((e) => {
       if (e.email.includes(search)) {
         return (
-          <div className="row" key={e.email}>
+          <div className="row" key={e.id}>
             <img src={e.img}></img>
             <div className="col">
               <div className="email">{e.email}</div>

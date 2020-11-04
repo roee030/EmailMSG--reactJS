@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import faker from "Faker";
+import { v4 as uuidv4 } from "uuid";
 import DisplayMSG from "./DisplayMSG";
 import "./Form.css";
 export default function Form() {
@@ -11,7 +12,7 @@ export default function Form() {
     e.preventDefault();
     if (email && message) {
       let temp = ArrayOfMsg;
-      temp.push({ email, message, img: faker.Image.avatar() });
+      temp.push({ email, message, img: faker.Image.avatar(), id: uuidv4() });
       SetArrayOfMsg(temp);
       localStorage.setItem("ArrayOfMsg", JSON.stringify(temp));
     }
