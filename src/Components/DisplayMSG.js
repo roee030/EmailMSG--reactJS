@@ -8,7 +8,7 @@ export default function DisplayMSG() {
         <div className="row">
           <img src={e.img}></img>
           <div className="col">
-            <div>{e.email}</div>
+            <div className="email">{e.email}</div>
             <div>{e.message}</div>
           </div>
         </div>
@@ -16,11 +16,9 @@ export default function DisplayMSG() {
     });
   }
   return (
-    <div className="displayMsg">
-      <div>
-        <input></input>
-        <div>{displaydata ? displaydata : "LOADING"}</div>
-      </div>
+    <div className="displayMsg-wraper">
+      <input></input>
+      <div>{displaydata ? displaydata : "LOADING"}</div>
     </div>
   );
 }

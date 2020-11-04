@@ -1,4 +1,27 @@
-.displayMsg {
+.displayMsg-wraper {
   background-color: white;
-  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+input {
+  margin: 5px 0 !important;
+}
+.row {
+  display: flex;
+  margin: 15px 0;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.email {
+  font-weight: bold;
+}
+img {
+  object-fit: cover;
+  height: 50px;
+  width: 50px;
 }
