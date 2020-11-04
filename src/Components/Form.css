@@ -28,3 +28,7 @@ button {
 .form > button {
   align-self: flex-end;
 }
+.displayMsg {
+  width: 80vw;
+  margin: 0 auto;
+}
