@@ -3,6 +3,7 @@ import faker from "Faker";
 import { v4 as uuidv4 } from "uuid";
 import DisplayMSG from "./DisplayMSG";
 import "./Form.css";
+import validator from "validator";
 export default function Form() {
   const [email, SetEmail] = useState("");
   const [message, SetMessage] = useState("");
@@ -10,9 +11,14 @@ export default function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email && message) {
+    if (validator.isEmail(email) && message) {
       let temp = ArrayOfMsg;
-      temp.push({ email, message, img: faker.Image.avatar(), id: uuidv4() });
+      temp.push({
+        email,
+        message,
+        img: faker.Image.avatar(),
+        id: uuidv4(),
+      });
       SetArrayOfMsg(temp);
       localStorage.setItem("ArrayOfMsg", JSON.stringify(temp));
     }

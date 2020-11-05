@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Form from "./Components/Form.js";
-import DisplayMSG from "./Components/DisplayMSG.js";
+
 function App() {
   return (
     <div className="App">
