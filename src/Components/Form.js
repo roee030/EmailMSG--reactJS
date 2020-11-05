@@ -7,11 +7,34 @@ import validator from "validator";
 export default function Form() {
   const [email, SetEmail] = useState("");
   const [message, SetMessage] = useState("");
-  let [ArrayOfMsg, SetArrayOfMsg] = useState([]);
+  let [ArrayOfMsg, SetArrayOfMsg] = useState(
+    JSON.parse(localStorage.getItem("ArrayOfMsg"))
+  );
+  const [emailWarning, SetEmailWarning] = useState("");
+  const [msgWarning, SetMsgWarning] = useState("");
 
+  console.log(ArrayOfMsg);
+  const checkDuplicateEmail = (email) => {
+    const dup = ArrayOfMsg.filter((e) => e.email == email);
+    if (dup.length == 0) {
+      return true;
+    }
+    return false;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validator.isEmail(email) && message) {
+    if (email.length == 0) {
+      SetEmailWarning("Enter valid Email");
+    }
+    if (message.length == 0) {
+      SetMsgWarning("Enter message is must!");
+    }
+    if (!checkDuplicateEmail(email)) {
+      SetEmailWarning("Someone useing this Email");
+    }
+    if (validator.isEmail(email) && message && checkDuplicateEmail(email)) {
+      SetEmailWarning("");
+      SetMsgWarning("");
       let temp = ArrayOfMsg;
       temp.push({
         email,
@@ -37,11 +60,13 @@ export default function Form() {
             placeholder="Email"
             onChange={(e) => SetEmail(e.target.value)}
           ></input>
+          <div className="warning">{emailWarning}</div>
           <input
             placeholder="Message"
             className="msg-input"
             onChange={(e) => SetMessage(e.target.value)}
           ></input>
+          <div className="warning">{msgWarning}</div>
           <button>Submit</button>
         </form>
       </div>
