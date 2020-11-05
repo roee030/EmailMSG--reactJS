@@ -30,7 +30,7 @@ export default function Form() {
       SetMsgWarning("Enter message is must!");
     }
     if (!checkDuplicateEmail(email)) {
-      SetEmailWarning("Someone useing this Email");
+      SetEmailWarning("Someone using this Email");
     }
     if (validator.isEmail(email) && message && checkDuplicateEmail(email)) {
       SetEmailWarning("");
