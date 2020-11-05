@@ -17,10 +17,11 @@ export default function Form() {
   const checkDuplicateEmail = (email) => {
     const dup = ArrayOfMsg.filter((e) => e.email == email);
     if (dup.length == 0) {
-      return true;
+      return faker.Image.avatar();
     }
-    return false;
+    return dup[0].img;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email.length == 0) {
@@ -29,9 +30,7 @@ export default function Form() {
     if (message.length == 0) {
       SetMsgWarning("Enter message is must!");
     }
-    if (!checkDuplicateEmail(email)) {
-      SetEmailWarning("Someone using this Email");
-    }
+
     if (validator.isEmail(email) && message && checkDuplicateEmail(email)) {
       SetEmailWarning("");
       SetMsgWarning("");
@@ -39,7 +38,7 @@ export default function Form() {
       temp.push({
         email,
         message,
-        img: faker.Image.avatar(),
+        img: checkDuplicateEmail(email),
         id: uuidv4(),
       });
       SetArrayOfMsg(temp);
